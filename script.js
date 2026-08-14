@@ -130,3 +130,33 @@ function addHistory(calculation) {
 
     historyList.prepend(item);
 }
+document.addEventListener("keydown", (event) => {
+    const key = event.key;
+
+    if (!isNaN(key) || key === ".") {
+        enterNumber(key);
+    }
+
+    else if (["+", "-", "*", "/"].includes(key)) {
+        const operators = {
+            "+": "+",
+            "-": "−",
+            "*": "×",
+            "/": "÷"
+        };
+
+        chooseOperator(operators[key]);
+    }
+
+    else if (key === "Enter" || key === "=") {
+        calculate();
+    }
+
+    else if (key === "Backspace") {
+        deleteNumber();
+    }
+
+    else if (key === "Escape") {
+        clearCalculator();
+    }
+});
